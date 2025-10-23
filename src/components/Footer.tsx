@@ -14,7 +14,6 @@ const footerLinks = {
   productos: [
     { name: 'Resto Pro', href: '#resto-pro' },
     { name: 'UCO Bot', href: '#uco-bot' },
-    { name: 'Portfolio', href: '#proyectos' },
     { name: 'Consultoría', href: '#contacto' }
   ],
   empresa: [

@@ -7,7 +7,7 @@ import { motion } from 'framer-motion'
 import LiquidEther from './LiquidEther'
 import RotatingText from './RotatingText'
 import { SimpleFlipWords } from './SimpleFlipWords'
-import ShimmerButton from './ui/shimmer-button'
+import StarBorder from './ui/StarBorder'
 
 export default function Hero() {
   const scrollToSection = (href: string) => {
@@ -31,32 +31,42 @@ export default function Hero() {
 
   return (
     <section id="inicio" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* LiquidEther Background - Exact implementation */}
-      <div style={{ width: '100%', height: '100vh', position: 'absolute', top: 0, left: 0, zIndex: 0 }}>
+      {/* LiquidEther Background - Interactive across entire screen */}
+      <div style={{ 
+        width: '100%', 
+        height: '100vh', 
+        position: 'absolute', 
+        top: 0, 
+        left: 0, 
+        zIndex: 1,
+        pointerEvents: 'auto'
+      }}>
         <LiquidEther
-          colors={['#5227FF', '#FF9FFC', '#B19EEF']}
+          colors={['#121111', '#7fa5d7', '#dc62f4']}
           mouseForce={20}
-          cursorSize={100}
+          cursorSize={150}
           isViscous={false}
-          viscous={30}
-          iterationsViscous={32}
-          iterationsPoisson={32}
-          resolution={0.5}
+          viscous={15}
+          iterationsViscous={24}
+          iterationsPoisson={24}
+          resolution={0.6}
+          dt={0.014}
+          BFECC={false}
           isBounce={false}
           autoDemo={true}
-          autoSpeed={0.5}
-          autoIntensity={2.2}
-          takeoverDuration={0.25}
-          autoResumeDelay={3000}
-          autoRampDuration={0.6}
+          autoSpeed={0.4}
+          autoIntensity={1.5}
+          takeoverDuration={0.15}
+          autoResumeDelay={2000}
+          autoRampDuration={0.8}
         />
       </div>
       
-      {/* Dark overlay for better text readability */}
+      {/* Dark overlay for better text readability - allows mouse interaction to pass through */}
       <div className="absolute inset-0 bg-black/20 pointer-events-none z-10"></div>
 
-      <div className="container mx-auto px-4 py-32 relative z-20">
-        <div className="max-w-4xl mx-auto text-center">
+      <div className="container mx-auto px-4 py-32 relative z-20 pointer-events-none">
+        <div className="max-w-4xl mx-auto text-center pointer-events-none">
           {/* Spacer for centered logo */}
           <div className="h-20 mb-8"></div>
           
@@ -102,30 +112,31 @@ export default function Hero() {
 
           {/* CTA Buttons */}
           <motion.div
-            className="flex flex-col sm:flex-row gap-6 justify-center items-center"
+            className="flex flex-col sm:flex-row gap-6 justify-center items-center pointer-events-auto"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.4 }}
           >
-            <ShimmerButton 
+            <StarBorder 
               onClick={() => scrollToSection('#contacto')}
-              variant="primary"
-              size="lg"
-              className="shadow-lg hover:shadow-xl"
+              className="shadow-lg hover:shadow-xl pointer-events-auto star-border-primary"
+              color="#5227FF"
+              speed="4s"
             >
               <span className="flex items-center gap-2">
                 Empezar Proyecto
                 <ArrowRight className="w-5 h-5" />
               </span>
-            </ShimmerButton>
+            </StarBorder>
             
-            <ShimmerButton 
-              onClick={() => scrollToSection('#proyectos')}
-              variant="secondary"
-              size="lg"
+            <StarBorder 
+              onClick={() => scrollToSection('#contacto')}
+              className="pointer-events-auto star-border-secondary"
+              color="#FF9FFC"
+              speed="5s"
             >
-              Ver Portafolio
-            </ShimmerButton>
+              Contáctanos
+            </StarBorder>
           </motion.div>
 
         </div>

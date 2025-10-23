@@ -2,9 +2,9 @@
 
 import { motion } from 'motion/react'
 import { Button } from './ui/button'
-import { MessageCircle, Clock, Globe, Zap, Bot, ArrowRight, Play } from 'lucide-react'
+import { MessageCircle, Clock, Globe, Zap, Bot, ArrowRight, ExternalLink } from 'lucide-react'
 import UCOBotNexusOrb from './UCOBotNexusOrb'
-import ShimmerButton from './ui/shimmer-button'
+import StarBorder from './ui/StarBorder'
 
 const features = [
   {
@@ -49,8 +49,8 @@ export default function UCOBot() {
   }
 
   const openDemo = () => {
-    // This would open a chat demo
-    window.open('https://demo.ucobot.com', '_blank')
+    // Open the UCO Bot app
+    window.open('https://chatbot-sass-eight.vercel.app/', '_blank')
   }
 
   return (
@@ -241,28 +241,29 @@ export default function UCOBot() {
               transition={{ duration: 0.8, delay: 0.8 }}
               viewport={{ once: true }}
             >
-              <ShimmerButton 
+              <StarBorder 
                 onClick={openDemo}
-                variant="primary"
-                size="lg"
-                className="shadow-lg hover:shadow-xl"
+                className="shadow-lg hover:shadow-xl star-border-primary"
+                color="#5227FF"
+                speed="4s"
               >
                 <span className="flex items-center gap-2">
-                  <Play className="w-5 h-5" />
-                  Probar Demo
+                  <ExternalLink className="w-5 h-5" />
+                  Ir a la App
                 </span>
-              </ShimmerButton>
+              </StarBorder>
               
-              <ShimmerButton 
+              <StarBorder 
                 onClick={scrollToContact}
-                variant="secondary"
-                size="lg"
+                className="star-border-secondary"
+                color="#FF9FFC"
+                speed="5s"
               >
                 <span className="flex items-center gap-2">
                   Más Información
                   <ArrowRight className="w-5 h-5" />
                 </span>
-              </ShimmerButton>
+              </StarBorder>
             </motion.div>
           </motion.div>
         </div>

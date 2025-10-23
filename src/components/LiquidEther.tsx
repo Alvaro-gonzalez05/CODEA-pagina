@@ -154,6 +154,8 @@ export default function LiquidEther({
       takeoverFrom: THREE.Vector2;
       takeoverTo: THREE.Vector2;
       onInteract: (() => void) | null;
+      lastMouseTime: number;
+      mouseThrottleMs: number;
 
       constructor() {
         this.mouseMoved = false;
@@ -178,6 +180,8 @@ export default function LiquidEther({
         this.takeoverFrom = new THREE.Vector2();
         this.takeoverTo = new THREE.Vector2();
         this.onInteract = null;
+        this.lastMouseTime = 0;
+        this.mouseThrottleMs = 4; // ~240fps throttling
       }
       init(container: HTMLElement) {
         this.container = container;
@@ -214,6 +218,7 @@ export default function LiquidEther({
         this.mouseMoved = true;
       }
       onDocumentMouseMove(event: MouseEvent) {
+        // Eliminamos el throttling para máxima responsividad
         if (this.onInteract) this.onInteract();
         if (this.isAutoActive && !this.hasUserControl && !this.takeoverActive && this.container) {
           const rect = this.container.getBoundingClientRect();

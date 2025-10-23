@@ -3,7 +3,7 @@
 import { motion } from 'motion/react'
 import { Card, CardContent } from './ui/card'
 import { ExternalLink, Github } from 'lucide-react'
-import ShimmerButton from './ui/shimmer-button'
+import StarBorder from './ui/StarBorder'
 import { ImageWithFallback } from './figma/ImageWithFallback'
 
 const projects = [
@@ -150,13 +150,13 @@ export default function Projects() {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <ShimmerButton
-            variant="secondary"
-            size="lg"
-            className="shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40"
+          <StarBorder
+            className="shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40 star-border-secondary"
+            color="#B19EEF"
+            speed="6s"
           >
             Ver Todos los Proyectos
-          </ShimmerButton>
+          </StarBorder>
         </motion.div>
       </div>
     </section>

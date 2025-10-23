@@ -5,11 +5,11 @@ import { Button } from './ui/button'
 import { Input } from './ui/input'
 import { Textarea } from './ui/textarea'
 import { Card, CardContent } from './ui/card'
-import ShimmerButton from './ui/shimmer-button'
+import StarBorder from './ui/StarBorder'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from './ui/accordion'
 import { MapPin, Phone, Mail, Clock, Send, Calendar } from 'lucide-react'
 import { useState } from 'react'
-import { toast } from 'sonner@2.0.3'
+import { toast } from 'sonner'
 
 const faqs = [
   {
@@ -242,29 +242,30 @@ export default function Contact() {
                   </div>
                   
                   <div className="flex flex-col sm:flex-row gap-4">
-                    <ShimmerButton
+                    <StarBorder
                       type="submit"
                       disabled={isSubmitting}
-                      variant="primary"
-                      size="lg"
-                      className="flex-1"
+                      className="flex-1 star-border-primary"
+                      color="#5227FF"
+                      speed="4s"
                     >
                       <span className="flex items-center gap-2">
                         {isSubmitting ? 'Enviando...' : 'Enviar Mensaje'}
                         <Send className="w-4 h-4" />
                       </span>
-                    </ShimmerButton>
+                    </StarBorder>
                     
-                    <ShimmerButton
+                    <StarBorder
                       onClick={scheduleCall}
-                      variant="secondary"
-                      size="lg"
+                      className="star-border-secondary"
+                      color="#FF9FFC"
+                      speed="5s"
                     >
                       <span className="flex items-center gap-2">
                         <Calendar className="w-4 h-4" />
                         Agendar Llamada
                       </span>
-                    </ShimmerButton>
+                    </StarBorder>
                   </div>
                 </form>
               </CardContent>

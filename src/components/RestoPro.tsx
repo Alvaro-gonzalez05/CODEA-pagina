@@ -2,9 +2,9 @@
 
 import { motion } from 'motion/react'
 import { Button } from './ui/button'
-import ShimmerButton from './ui/shimmer-button'
+import StarBorder from './ui/StarBorder'
 import { Card, CardContent } from './ui/card'
-import { Users, BarChart3, Calendar, CreditCard, Star, TrendingUp, ArrowRight, ExternalLink } from 'lucide-react'
+import { Users, BarChart3, Calendar, CreditCard, Star, TrendingUp, ArrowRight } from 'lucide-react'
 
 const features = [
   {
@@ -51,10 +51,7 @@ export default function RestoPro() {
     }
   }
 
-  const openDemo = () => {
-    // This would open a demo link or modal
-    window.open('https://demo.restopro.com', '_blank')
-  }
+
 
   return (
     <section id="resto-pro" className="py-24 relative overflow-hidden">
@@ -239,29 +236,18 @@ export default function RestoPro() {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <ShimmerButton 
-              onClick={openDemo}
-              variant="success"
-              size="lg"
-              className="shadow-lg hover:shadow-xl"
-            >
-              <span className="flex items-center gap-2">
-                Ver Demo en Vivo
-                <ExternalLink className="w-5 h-5" />
-              </span>
-            </ShimmerButton>
-            
-            <ShimmerButton 
+          <div className="flex justify-center">
+            <StarBorder 
               onClick={scrollToContact}
-              variant="secondary"
-              size="lg"
+              className="star-border-secondary"
+              color="#FF9FFC"
+              speed="5s"
             >
               <span className="flex items-center gap-2">
                 Solicitar Info
                 <ArrowRight className="w-5 h-5" />
               </span>
-            </ShimmerButton>
+            </StarBorder>
           </div>
         </motion.div>
       </div>

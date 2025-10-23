@@ -83,17 +83,12 @@ export default function About() {
             </h3>
             
             <p className="text-lg text-gray-300 mb-6 leading-relaxed">
-              En <span className="text-purple-400">Codea Desarrollos</span>, creemos que la tecnología 
-              debe ser un catalizador para el crecimiento empresarial. Desde nuestros inicios, 
-              hemos trabajado incansablemente para crear soluciones que no solo cumplan con 
-              las expectativas, sino que las superen.
-            </p>
+              Somos <span className="text-purple-400">Lucia y Alvaro</span>, dos emprendedores mendocinos con una firme visión en el futuro digital. Juntos, dimos vida a Codea Desarrollos, una startup que nació de la pasión por crear soluciones tecnológicas que realmente impulsen a los negocios.
+</p>
             
             <p className="text-lg text-gray-300 mb-8 leading-relaxed">
-              Nuestro enfoque se centra en entender profundamente las necesidades de cada cliente, 
-              para luego diseñar y desarrollar productos que generen un impacto real en su negocio. 
-              La innovación, la calidad y la satisfacción del cliente son los pilares que guían 
-              cada uno de nuestros proyectos.
+              En Codea Desarrollos, combinamos la creatividad local con estándares globales de desarrollo de software. Nos especializamos en transformar ideas ambiciosas en productos digitales funcionales y escalables. Con más de 30 proyectos exitosos a nuestras espaldas y una creciente cartera de clientes satisfechos, nuestro compromiso es ser el socio tecnológico que acompaña a las empresas en su proceso de digitalización.
+Somos el talento mendocino que está programando el mañana. Nuestro objetivo es claro: dejar una huella de innovación y excelencia en cada línea de código que escribimos.
             </p>
 
             {/* Stats */}
@@ -132,28 +127,60 @@ export default function About() {
                 <CardContent className="p-0">
                   <div className="text-center mb-6">
                     <h4 className="text-2xl text-white mb-2">Nuestro Equipo</h4>
-                    <p className="text-gray-300">Expertos en tecnología</p>
+                    <p className="text-gray-300">Fundadores</p>
                   </div>
                   
-                  <div className="grid grid-cols-3 gap-4 mb-6">
-                    {[...Array(6)].map((_, i) => (
+                  <div className="flex justify-center gap-8 mb-6">
+                    {/* Álvaro González */}
+                    <motion.div
+                      className="text-center"
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.6, delay: 0.1 }}
+                      viewport={{ once: true }}
+                    >
                       <motion.div
-                        key={i}
-                        className="w-16 h-16 bg-gradient-to-r from-purple-600 to-purple-800 rounded-full flex items-center justify-center"
-                        initial={{ scale: 0 }}
-                        whileInView={{ scale: 1 }}
-                        transition={{ duration: 0.3, delay: i * 0.1 }}
-                        viewport={{ once: true }}
-                        whileHover={{ scale: 1.1 }}
+                        className="overflow-hidden mb-3 mx-auto border-2 border-purple-500/30 hover:border-purple-500/70 transition-all duration-300"
+                        style={{ borderRadius: '30px', width: '250px', height: '400px' }}
+                        whileHover={{ scale: 1.05 }}
                       >
-                        <Users className="w-8 h-8 text-white" />
+                        <img
+                          src="/multimedia/alva.jpg"
+                          alt="Álvaro González"
+                          className="w-full h-full object-cover"
+                        />
                       </motion.div>
-                    ))}
+                      <h5 className="text-white font-semibold text-sm mb-1">ÁLVARO GONZÁLEZ</h5>
+                      <p className="text-gray-400 text-xs">Fundador</p>
+                    </motion.div>
+
+                    {/* Lucía Miranda */}
+                    <motion.div
+                      className="text-center"
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.6, delay: 0.2 }}
+                      viewport={{ once: true }}
+                    >
+                      <motion.div
+                        className="overflow-hidden mb-3 mx-auto border-2 border-purple-500/30 hover:border-purple-500/70 transition-all duration-300"
+                        style={{ borderRadius: '30px', width: '300px', height: '400px' }}
+                        whileHover={{ scale: 1.05 }}
+                      >
+                        <img
+                          src="/multimedia/luci.jpg"
+                          alt="Lucía Miranda"
+                          className="w-full h-full object-cover"
+                        />
+                      </motion.div>
+                      <h5 className="text-white font-semibold text-sm mb-1">LUCÍA MIRANDA</h5>
+                      <p className="text-gray-400 text-xs">Fundadora</p>
+                    </motion.div>
                   </div>
                   
                   <div className="text-center">
                     <div className="text-sm text-gray-400">
-                      Desarrolladores • Diseñadores • Consultores
+                      Desarrolladores • Innovadores • Emprendedores
                     </div>
                   </div>
                 </CardContent>
