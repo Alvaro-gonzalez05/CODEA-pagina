@@ -108,9 +108,15 @@ export default function LiquidEther({
         this.renderer.setClearColor(new THREE.Color(0x000000), 0);
         this.renderer.setPixelRatio(this.pixelRatio);
         this.renderer.setSize(this.width, this.height);
-        this.renderer.domElement.style.width = '100%';
-        this.renderer.domElement.style.height = '100%';
-        this.renderer.domElement.style.display = 'block';
+        const canvas = this.renderer.domElement;
+        canvas.style.width = '100%';
+        canvas.style.height = '100%';
+        canvas.style.display = 'block';
+        canvas.style.position = 'fixed';
+        canvas.style.top = '0';
+        canvas.style.left = '0';
+        canvas.style.zIndex = '0';
+        canvas.style.pointerEvents = 'none';
         this.clock = new THREE.Clock();
         this.clock.start();
       }
@@ -185,26 +191,30 @@ export default function LiquidEther({
       }
       init(container: HTMLElement) {
         this.container = container;
-        container.addEventListener('mousemove', this._onMouseMove, false);
-        container.addEventListener('touchstart', this._onTouchStart, false);
-        container.addEventListener('touchmove', this._onTouchMove, false);
-        container.addEventListener('mouseenter', this._onMouseEnter, false);
-        container.addEventListener('mouseleave', this._onMouseLeave, false);
-        container.addEventListener('touchend', this._onTouchEnd, false);
+        // Listen to mouse events on the parent section instead of the container
+        const parentSection = container.closest('section') || document.body;
+        parentSection.addEventListener('mousemove', this._onMouseMove, false);
+        parentSection.addEventListener('touchstart', this._onTouchStart, false);
+        parentSection.addEventListener('touchmove', this._onTouchMove, false);
+        parentSection.addEventListener('mouseenter', this._onMouseEnter, false);
+        parentSection.addEventListener('mouseleave', this._onMouseLeave, false);
+        parentSection.addEventListener('touchend', this._onTouchEnd, false);
       }
       dispose() {
         if (!this.container) return;
-        this.container.removeEventListener('mousemove', this._onMouseMove, false);
-        this.container.removeEventListener('touchstart', this._onTouchStart, false);
-        this.container.removeEventListener('touchmove', this._onTouchMove, false);
-        this.container.removeEventListener('mouseenter', this._onMouseEnter, false);
-        this.container.removeEventListener('mouseleave', this._onMouseLeave, false);
-        this.container.removeEventListener('touchend', this._onTouchEnd, false);
+        const parentSection = this.container.closest('section') || document.body;
+        parentSection.removeEventListener('mousemove', this._onMouseMove, false);
+        parentSection.removeEventListener('touchstart', this._onTouchStart, false);
+        parentSection.removeEventListener('touchmove', this._onTouchMove, false);
+        parentSection.removeEventListener('mouseenter', this._onMouseEnter, false);
+        parentSection.removeEventListener('mouseleave', this._onMouseLeave, false);
+        parentSection.removeEventListener('touchend', this._onTouchEnd, false);
       }
       setCoords(x: number, y: number) {
         if (!this.container) return;
         if (this.timer) clearTimeout(this.timer);
-        const rect = this.container.getBoundingClientRect();
+        const parentSection = this.container.closest('section') || this.container;
+        const rect = parentSection.getBoundingClientRect();
         const nx = (x - rect.left) / rect.width;
         const ny = (y - rect.top) / rect.height;
         this.coords.set(nx * 2 - 1, -(ny * 2 - 1));
@@ -221,7 +231,8 @@ export default function LiquidEther({
         // Eliminamos el throttling para máxima responsividad
         if (this.onInteract) this.onInteract();
         if (this.isAutoActive && !this.hasUserControl && !this.takeoverActive && this.container) {
-          const rect = this.container.getBoundingClientRect();
+          const parentSection = this.container.closest('section') || this.container;
+          const rect = parentSection.getBoundingClientRect();
           const nx = (event.clientX - rect.left) / rect.width;
           const ny = (event.clientY - rect.top) / rect.height;
           this.takeoverFrom.copy(this.coords);
@@ -1041,8 +1052,15 @@ export default function LiquidEther({
     }
 
     const container = mountRef.current;
-    container.style.position = container.style.position || 'relative';
-    container.style.overflow = container.style.overflow || 'hidden';
+    // Configure container to act as background
+    container.style.position = 'fixed';
+    container.style.top = '0';
+    container.style.left = '0';
+    container.style.width = '100%';
+    container.style.height = '100%';
+    container.style.overflow = 'hidden';
+    container.style.pointerEvents = 'none';
+    container.style.zIndex = '0';
 
     const webgl = new WebGLManager({
       $wrapper: container,

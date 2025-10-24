@@ -31,42 +31,32 @@ export default function Hero() {
 
   return (
     <section id="inicio" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* LiquidEther Background - Interactive across entire screen */}
-      <div style={{ 
-        width: '100%', 
-        height: '100vh', 
-        position: 'absolute', 
-        top: 0, 
-        left: 0, 
-        zIndex: 1,
-        pointerEvents: 'auto'
-      }}>
-        <LiquidEther
-          colors={['#121111', '#7fa5d7', '#dc62f4']}
-          mouseForce={20}
-          cursorSize={150}
-          isViscous={false}
-          viscous={15}
-          iterationsViscous={24}
-          iterationsPoisson={24}
-          resolution={0.6}
-          dt={0.014}
-          BFECC={false}
-          isBounce={false}
-          autoDemo={true}
-          autoSpeed={0.4}
-          autoIntensity={1.5}
-          takeoverDuration={0.15}
-          autoResumeDelay={2000}
-          autoRampDuration={0.8}
-        />
-      </div>
+      {/* LiquidEther Background - Interactive background effect */}
+      <LiquidEther
+        colors={['#121111', '#7fa5d7', '#dc62f4']}
+        mouseForce={20}
+        cursorSize={150}
+        isViscous={false}
+        viscous={15}
+        iterationsViscous={24}
+        iterationsPoisson={24}
+        resolution={0.6}
+        dt={0.014}
+        BFECC={false}
+        isBounce={false}
+        autoDemo={true}
+        autoSpeed={0.4}
+        autoIntensity={1.5}
+        takeoverDuration={0.15}
+        autoResumeDelay={2000}
+        autoRampDuration={0.8}
+      />
       
       {/* Dark overlay for better text readability - allows mouse interaction to pass through */}
       <div className="absolute inset-0 bg-black/20 pointer-events-none z-10"></div>
 
-      <div className="container mx-auto px-4 py-32 relative z-20 pointer-events-none">
-        <div className="max-w-4xl mx-auto text-center pointer-events-none">
+      <div className="container mx-auto px-4 py-32 relative z-20">
+        <div className="max-w-4xl mx-auto text-center">
           {/* Spacer for centered logo */}
           <div className="h-20 mb-8"></div>
           
