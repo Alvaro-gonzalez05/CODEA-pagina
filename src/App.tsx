@@ -14,9 +14,15 @@ import Footer from './components/Footer'
 import Loader from './components/Loader'
 import WhatsAppButton from './components/WhatsAppButton'
 import ParticleBackground from './components/ParticleBackground'
+import ScrollToTopButton from './components/ScrollToTopButton'
+import { useLenis } from './hooks/useLenis'
+import { LenisProvider } from './hooks/useLenisContext'
 
 export default function App() {
   const [loading, setLoading] = useState(true)
+  
+  // Inicializar Lenis para scroll suave
+  const lenis = useLenis()
 
   useEffect(() => {
     // Simulate loading time
@@ -32,20 +38,23 @@ export default function App() {
   }
 
   return (
-    <div className="dark min-h-screen bg-black text-white overflow-x-hidden">
-      <ParticleBackground />
-      <Header />
-      <main>
-        <Hero />
-        <Services />
-        <RestoPro />
-        <UCOBot />
-        <Testimonials />
-        <About />
-        <Contact />
-      </main>
-      <Footer />
-      <WhatsAppButton />
-    </div>
+    <LenisProvider lenis={lenis}>
+      <div className="dark min-h-screen bg-black text-white overflow-x-hidden">
+        <ParticleBackground />
+        <Header />
+        <main>
+          <Hero />
+          <Services />
+          <RestoPro />
+          <UCOBot />
+          <Testimonials />
+          <About />
+          <Contact />
+        </main>
+        <Footer />
+        <WhatsAppButton />
+        <ScrollToTopButton />
+      </div>
+    </LenisProvider>
   )
 }

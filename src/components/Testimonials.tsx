@@ -67,7 +67,7 @@ export default function Testimonials() {
   }, [])
 
   return (
-    <section id="clientes" className="py-20 relative">
+    <section id="testimonios" className="py-20 relative">
       <div className="container mx-auto px-4">
         <motion.div
           className="text-center mb-20"

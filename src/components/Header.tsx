@@ -1,7 +1,8 @@
 ﻿'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useLenisContext, scrollTo } from '../hooks/useLenisContext'
 
 const navItems = [
   { name: 'Inicio', href: '#inicio' },
@@ -13,16 +14,11 @@ const navItems = [
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const { lenis } = useLenisContext()
 
   const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId.replace('#', ''))
-    if (element) {
-      const offsetTop = element.offsetTop - 80
-      window.scrollTo({
-        top: offsetTop,
-        behavior: 'smooth'
-      })
-    }
+    // Usar Lenis para scroll suave mejorado
+    scrollTo(sectionId, lenis)
     setIsMenuOpen(false)
   }
 
